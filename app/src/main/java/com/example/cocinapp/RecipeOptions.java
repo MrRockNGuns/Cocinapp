@@ -13,7 +13,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OpcionesRecetas extends AppCompatActivity {
+public class RecipeOptions extends AppCompatActivity {
 
     List<Recipe> elements;
     private RequestQueue request;
@@ -25,7 +25,7 @@ public class OpcionesRecetas extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opciones_recetas);
+        setContentView(R.layout.activity_recipe_options);
 
         elements = new ArrayList<>();
 
@@ -51,10 +51,10 @@ public class OpcionesRecetas extends AppCompatActivity {
 
             }
         });
-        RecyclerView reciclerView = findViewById(R.id.recicler);
-        reciclerView.setHasFixedSize(true);
-        reciclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        reciclerView.setAdapter(listAdapter);
+        RecyclerView recyclerView = findViewById(R.id.recicler);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setAdapter(listAdapter);
 
 
 
