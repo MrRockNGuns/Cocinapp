@@ -10,7 +10,8 @@
         android:id="@+id/buscaIngredientes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/search_ingredient"
+        android:text="@string/ingredient"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -21,10 +22,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="430dp"
+        android:layout_height="54dp"
         app:layout_constraintTop_toBottomOf="@+id/buscaIngredientes"
-        tools:ignore="MissingConstraints,UnknownId">
+        tools:ignore="MissingConstraints,UnknownId"
+        tools:layout_editor_absoluteX="-19dp">
+
         <EditText
             android:id="@+id/ingrediente1"
             android:layout_width="match_parent"

@@ -8,6 +8,7 @@
     <string name="forgot_password">Olvido su contraseña?</string>
     <string name="password_recovery">Ingrese su correo para una nueva contraseña</string>
     <string name="send">Enviar</string>
-    <string name="search_ingredient">Ingrese su ingrediente</string>
+    <string name="search_ingredient">Ingredientes</string>
     <string name="search_recipe">Buscar receta</string>
+    <string name="ingredient">ingrediente</string>
 </resources>

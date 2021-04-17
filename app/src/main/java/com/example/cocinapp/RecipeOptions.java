@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,10 @@ public class RecipeOptions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_options);
+
+        String url = "http://gymup.zonahosting.net/gymphp/getGimnasiosWS.php";
+        request = Volley.newRequestQueue(this);
+        loadWebService(url);
 
         elements = new ArrayList<>();
 
@@ -55,8 +60,11 @@ public class RecipeOptions extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(listAdapter);
+    }
 
+    public void loadWebService(String url){
 
 
     }
+
 }
