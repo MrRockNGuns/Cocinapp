@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cocinapp">
         <activity android:name=".recipe_card"></activity>
-        <activity android:name=".opciones_recetas" />
-        <activity android:name=".full_recipe" />
+        <activity android:name=".OpcionesRecetas" />
+        <activity android:name=".FullRecipe" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".MainActivity">
             <intent-filter>
