@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cocinapp">
-        <activity android:name=".recipe_card"></activity>
+        <activity android:name=".login_user"></activity>
+        <activity android:name=".recipe_card" />
         <activity android:name=".RecipeOptions" />
         <activity android:name=".FullRecipe" />
         <activity android:name=".ForgotPassword" />

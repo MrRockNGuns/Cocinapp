@@ -18,19 +18,6 @@ public class MainActivity extends AppCompatActivity {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE); // esto Permite no mostrar la barra la primera vez
         setContentView(R.layout.activity_main);
 
-        btnLogin = findViewById(R.id.btnLogin);
-
-
-        btnLogin.setOnClickListener(new View.OnClickListener(){
-               @Override
-               public void onClick(View v) {
-  //                 Toast.makeText(getApplicationContext(), "PRUEBA BOTON" , Toast.LENGTH_LONG).show();
-                   Intent newActivity = new Intent(getApplicationContext(), SearchRecipe.class);
-                   startActivity(newActivity);
-               }
-           }
-        );
-
     }
 
     public void ForgotPassword(View view){
