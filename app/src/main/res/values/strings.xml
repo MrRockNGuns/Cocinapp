@@ -11,4 +11,6 @@
     <string name="search_ingredient">Ingredientes</string>
     <string name="search_recipe">Buscar receta</string>
     <string name="ingredient">ingrediente</string>
+    <string name="home">Recetas</string>
+    <string name="ratings">Valoraciones</string>
 </resources>
