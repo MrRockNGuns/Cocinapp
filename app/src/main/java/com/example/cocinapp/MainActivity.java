@@ -28,9 +28,15 @@ public class MainActivity extends AppCompatActivity {
         miNavegacion.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.ratings){
 
+                }
+                if(item.getItemId() == R.id.home){
 
+                }
+                if(item.getItemId() == R.id.user){
 
+                }
                 return true;
             }
         });
