@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                     showFragment(new search());
                 }
                 if(item.getItemId() == R.id.user){
-
+                    showFragment(new user());
                 }
                 return true;
             }
