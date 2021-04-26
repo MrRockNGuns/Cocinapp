@@ -13,4 +13,6 @@
     <string name="ingredient">ingrediente</string>
     <string name="home">Recetas</string>
     <string name="ratings">Valoraciones</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

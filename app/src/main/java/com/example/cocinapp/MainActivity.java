@@ -2,6 +2,8 @@ package com.example.cocinapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 if(item.getItemId() == R.id.home){
-
+                    showFragment(new search());
                 }
                 if(item.getItemId() == R.id.user){
 
@@ -48,5 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    private void showFragment(Fragment fragment){
+        getSupportFragmentManager().beginTransaction().replace(R.id.Principal,fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
+    }
 }
