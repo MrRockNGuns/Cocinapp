@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() == R.id.ratings){
-
+                    showFragment(new ratings());
                 }
                 if(item.getItemId() == R.id.home){
                     showFragment(new search());

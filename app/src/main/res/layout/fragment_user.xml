@@ -22,7 +22,7 @@
             android:layout_marginBottom="105dp"/>
 
         <EditText
-            android:id="@+id/etUsuario"
+            android:id="@+id/etUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible"
@@ -33,7 +33,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etPassword"
+            android:id="@+id/etPass"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:layout_marginBottom="25dp"/>
@@ -59,7 +59,7 @@
             android:text="@string/button_forgotpass"
             android:layout_marginBottom="25dp"
             android:id="@+id/btnForgotPassword"
-            android:onClick="ForgotPassword"/>
+            />
 
     </LinearLayout>
 </FrameLayout>
