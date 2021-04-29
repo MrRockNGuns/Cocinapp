@@ -25,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
         //supportRequestWindowFeature(Window.FEATURE_NO_TITLE); // esto Permite no mostrar la barra la primera vez
         setContentView(R.layout.activity_main);
 
+        if (savedInstanceState == null){
+            showFragment(new search());
+        }
+
         miNavegacion = (BottomNavigationView) findViewById(R.id.bottom_menu);
 
         miNavegacion.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

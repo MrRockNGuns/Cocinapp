@@ -1,10 +1,13 @@
 package com.example.cocinapp;
 
 import android.app.DownloadManager;
+import android.app.FragmentManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,18 +15,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,43 +55,62 @@ public class user extends Fragment {
     private String mParam1;
     private String mParam2;
 
-
-    // Esto hace la solicitud
-    private void postRequest(String data){
-        final String sendData = data;
-        String url= "http://192.168.1.6/test/login_api.php";
-        Log.d("ENTRE","Al Proceso");
-        RequestQueue postRequest = Volley.newRequestQueue(getContext());
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject objres = new JSONObject(response);
-                    Snackbar notification = Snackbar.make(getView(),objres.toString(),Snackbar.LENGTH_SHORT);
-                    notification.show();
-                    Log.d("MENSAJES",objres.toString());
-                }
-                catch (JSONException e){
-                    Snackbar notification = Snackbar.make(getView(),e.toString(),Snackbar.LENGTH_SHORT);
-                    notification.show();
-                    Log.d("MENSAJES",e.toString());
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Snackbar notification = Snackbar.make(getView(),error.toString(),Snackbar.LENGTH_SHORT);
-                notification.show();
-            }
-        });
-        postRequest.add(stringRequest);
-    }
-
     public user() {
         // Required empty public constructor
     }
 
+    private void jsonArrayPost(String email,String pass){
+
+        RequestQueue postRequest = Volley.newRequestQueue(getContext());
+        String url= "http://10.0.2.2/test/login_api.php";
+        final JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("email", email);
+            jsonBody.put("pass", pass);
+        }
+        catch (JSONException e){
+            Log.d("ERROR","no pudo hacer PUT");
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                jsonBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        int size = response.length();
+                        for(int i=0; i<size; i++){
+                            try {
+                                JSONObject jsonObject = new JSONObject(response.toString());
+                                String titulo = jsonObject.getString("message");
+                                Snackbar notification = Snackbar.make(getView(),titulo,Snackbar.LENGTH_SHORT);
+                                notification.show();
+                                getActivity().getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.Principal,new user_dashboard()).addToBackStack(null).commit();
+                            }
+                            catch (JSONException e){
+                                e.printStackTrace();
+                                Snackbar notification = Snackbar.make(getView(),"Hubo un error al intentarlo",Snackbar.LENGTH_SHORT);
+                                notification.show();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        int error_code = error.networkResponse.statusCode;
+                        if (error_code != 401){
+                            Snackbar notification = Snackbar.make(getView(),"Hubo un problema al intentarlo",Snackbar.LENGTH_SHORT);
+                            notification.show();
+                        }
+                        Snackbar notification = Snackbar.make(getView(),"Usuario y/o Contraseña incorrectos",Snackbar.LENGTH_SHORT);
+                        notification.show();
+                    }
+                });
+        postRequest.add(jsonObjectRequest);
+    }
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -129,18 +155,9 @@ public class user extends Fragment {
             public void onClick(View v) {
                 String userEmail = email.getText().toString();
                 String userPass = pass.getText().toString();
-                String data = "{ " +
-                        "\"email\"" + "\"" + userEmail + "\","+
-                        "\"pass\"" + "\"" + userPass + "\""+
-                        "}";
-                Log.d("ANTES",data);
-                postRequest(data);
-
+                jsonArrayPost(userEmail,userPass);
             }
         });
-
-
         return view;
     }
-
 }
