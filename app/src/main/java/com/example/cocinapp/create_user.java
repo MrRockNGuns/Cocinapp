@@ -51,7 +51,7 @@ public class create_user extends Fragment {
     private void jsonregisterUser(String name,String email,String pass,String birthdate,String gendervalue){
         RequestQueue postRequest = Volley.newRequestQueue(getContext());
         String url= "http://cocinapp.infinityfreeapp.com/registro_api.php";
-       // String url= "http://10.0.2.2/test/registro_api.php";
+        //String url= "http://10.0.2.2/test/registro_api.php";
 
         final JSONObject jsonBody = new JSONObject();
         try {

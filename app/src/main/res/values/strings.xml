@@ -23,4 +23,5 @@
     <string name="gender">Genero</string>
     <string name="birthDate">Fecha de nacimiento</string>
     <string name="mail">Correo eléctronico</string>
+    <string name="admin_mnu">Menu de Admin</string>
 </resources>
