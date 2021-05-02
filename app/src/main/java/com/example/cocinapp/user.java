@@ -49,7 +49,7 @@ public class user extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     EditText email, pass;
-    Button btnLogin;
+    Button btnLogin, btnRegister;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -62,7 +62,8 @@ public class user extends Fragment {
     private void jsonArrayPost(String email,String pass){
 
         RequestQueue postRequest = Volley.newRequestQueue(getContext());
-        String url= "http://10.0.2.2/test/login_api.php";
+        String url= "http://cocinapp.infinityfreeapp.com/login_api.php";
+        //String url= "http://10.0.2.2/test/login_api.php";
         final JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("email", email);
@@ -149,6 +150,7 @@ public class user extends Fragment {
         email = (EditText)view.findViewById(R.id.etUser);
         pass  = (EditText)view.findViewById(R.id.etPass);
         btnLogin = view.findViewById(R.id.btnLogin);
+        btnRegister = view.findViewById(R.id.btnRegister);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,6 +158,14 @@ public class user extends Fragment {
                 String userEmail = email.getText().toString();
                 String userPass = pass.getText().toString();
                 jsonArrayPost(userEmail,userPass);
+            }
+        });
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.Principal,new create_user()).addToBackStack(null).commit();
             }
         });
         return view;

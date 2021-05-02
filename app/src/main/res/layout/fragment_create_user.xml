@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user">
+    tools:context=".create_user">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -14,52 +14,64 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_marginTop="105dp"
+            android:layout_marginTop="25dp"
             android:layout_height="55dp"
             android:autoSizeTextType="uniform"
-            android:text="@string/welcome"
+            android:text="@string/register"
             android:textAlignment="center"
-            android:layout_marginBottom="105dp"/>
+        />
 
         <EditText
-            android:id="@+id/etUser"
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible"
-            android:hint="@string/user"
-            android:inputType="textEmailAddress"
-            android:layout_marginBottom="25dp"/>
+            android:hint="@string/name"
+            android:inputType="text"
+            android:layout_marginBottom="5dp"/>
 
         <EditText
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etPass"
+            android:visibility="visible"
+            android:hint="@string/mail"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="5dp"/>
+
+        <EditText
+            android:id="@+id/etPasswd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:layout_marginBottom="25dp"/>
+            android:layout_marginBottom="5dp"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:text="@string/button_login"
-            android:layout_marginBottom="25dp"
-            android:id="@+id/btnLogin"/>
-
-        <TextView
+        <EditText
+            android:id="@+id/etBirthDay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="@string/forgot_password"
-            android:layout_marginBottom="45dp"/>
+            android:visibility="visible"
+            android:hint="@string/birthDate"
+            android:inputType="date"
+            android:layout_marginBottom="5dp"/>
+
+
+        <Spinner
+            android:id="@+id/spnGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginBottom="40dp"/>
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="30dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="25dp"
             android:text="@string/register"
             android:layout_marginBottom="25dp"
-            android:id="@+id/btnRegister"
-            />
-
+            android:id="@+id/btnRegister_User"/>
     </LinearLayout>
+
 </FrameLayout>

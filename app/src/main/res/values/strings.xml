@@ -18,4 +18,9 @@
     <string name="upload_recipe">Subir Receta</string>
     <string name="edit_user">Actualizar mis datos</string>
     <string name="log_out">Cerrar sesion</string>
+    <string name="register">Registrarse</string>
+    <string name="name">Nombre</string>
+    <string name="gender">Genero</string>
+    <string name="birthDate">Fecha de nacimiento</string>
+    <string name="mail">Correo eléctronico</string>
 </resources>
