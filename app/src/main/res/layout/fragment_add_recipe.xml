@@ -55,7 +55,7 @@
             android:visibility="visible"
             android:hint="@string/ingredients"
             android:layout_marginBottom="5dp"/>
-
+<!--
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
             android:id="@+id/cbRecipeVegetarian"
             android:onClick="onCheckboxClicked"
             />
-
+-->
 
         <Button
             android:layout_width="match_parent"

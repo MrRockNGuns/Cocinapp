@@ -4,12 +4,25 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -72,67 +85,101 @@ public class add_recipe extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_recipe, container, false);
 
-        etName = (EditText)view.findViewById(R.id.etName);
+        etName = (EditText)view.findViewById(R.id.etRecipeName);
         etIngredients = (EditText)view.findViewById(R.id.etRecipeIngredients);
         etRecipePreparation = (EditText)view.findViewById(R.id.etRecipePreparation);
         etRecipeTime = (EditText)view.findViewById(R.id.etRecipeTime);
-
+        /*
         cbCeliac = (CheckBox)view.findViewById(R.id.cbRecipeCeliac);
         cbVegan = (CheckBox)view.findViewById(R.id.cbRecipeVegan);
         cbVegetarian = (CheckBox)view.findViewById(R.id.cbRecipeVegetarian);
         cbDiabetic = (CheckBox)view.findViewById(R.id.cbRecipeDiabetic);
-
+        */
         btAddRecipe =(Button)view.findViewById(R.id.btnAdd_Recipe);
 
 
         btAddRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name,ingredients,preparation,time;
+
                 Integer recipetime;
 
-                // Mostrar Coso
+                String name = etName.getText().toString();
+                String ingredients = etIngredients.getText().toString();
+                String preparation = etRecipePreparation.getText().toString();
+                String time  = etRecipeTime.getText().toString();
 
+                //recipetime = new Integer(time).intValue();
+
+                // Llamo a la funcion
+                jsonCreateRecipe(name,ingredients,preparation,time);
             }
         });
 
         return view;
     }
 
-    public void onCheckboxClicked(View view) {
-        // Is the view now checked?
-        boolean checked = ((CheckBox) view).isChecked();
+    private void jsonCreateRecipe(String name, String ingredients, String preparation, String time){
+        RequestQueue postRequest = Volley.newRequestQueue(getContext());
+        String url = "http://gestion.universof.com/back_cocinapp/IngresoReceta_api.php";
+        //String url = "http://10.0.2.2/test/IngresoReceta_api.php";
 
-        // Check which checkbox was clicked
-        switch(view.getId()) {
-            case R.id.cbRecipeVegan:
-                if (checked){
-                    sVegan = 1;
-                }
-                else {
-                    sVegan = 0;
-                }
-            case R.id.cbRecipeCeliac:
-                if (checked){
-                    sCeliac = 1;
-                }
-                else {
-                    sCeliac = 0;
-                }
-            case R.id.cbRecipeDiabetic:
-                if (checked){
-                    sDiabetic = 1;
-                }
-                else {
-                    sDiabetic = 0;
-                }
-            case R.id.cbRecipeVegetarian:
-                if (checked){
-                    sVegetarian = 1;
-                }
-                else {
-                    sVegetarian = 0;
-                }
+        final JSONObject jsonIngredient = new JSONObject();
+        try {
+            jsonIngredient.put("ingredient",ingredients);
         }
+        catch (JSONException e){
+            Log.d("Error", "Error al realizar put");
+        }
+        final JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("name", name);
+            jsonBody.put("preparation", preparation);
+            jsonBody.put("time", time);
+            jsonBody.put("ingredients",jsonIngredient);
+        }
+        catch (JSONException e){
+            Log.d("Error", "Error al realizar put");
+        }
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                jsonBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        int size = response.length();
+                        for(int i=0; i<size; i++){
+                            try {
+                                JSONObject jsonObject = new JSONObject(response.toString());
+                                String titulo = jsonObject.getString("message");
+                                Snackbar notification = Snackbar.make(getView(),titulo,Snackbar.LENGTH_SHORT);
+                                notification.show();
+                                getActivity().getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.Principal,new user_dashboard()).addToBackStack(null).commit();
+                            }
+                            catch (JSONException e){
+                                e.printStackTrace();
+                                Snackbar notification = Snackbar.make(getView(),"Hubo un error al intentarlo",Snackbar.LENGTH_SHORT);
+                                notification.show();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        int error_code = error.networkResponse.statusCode;
+                        if (error_code != 401){
+                            Snackbar notification = Snackbar.make(getView(),"Hubo un problema al intentarlo",Snackbar.LENGTH_SHORT);
+                            notification.show();
+                        }
+                        Snackbar notification = Snackbar.make(getView(),"Hubo un error que no pudimos resolver",Snackbar.LENGTH_SHORT);
+                        notification.show();
+                    }
+                });
+        postRequest.add(jsonObjectRequest);
     }
 }
