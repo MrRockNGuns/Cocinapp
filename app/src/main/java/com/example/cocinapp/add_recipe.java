@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +26,14 @@ public class add_recipe extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    EditText etName, etIngredients,etRecipePreparation,etRecipeTime;
+
+    CheckBox cbCeliac,cbVegan,cbVegetarian,cbDiabetic;
+
+    Button btAddRecipe;
+
+    Integer sCeliac,sVegan,sVegetarian,sDiabetic;
 
     public add_recipe() {
         // Required empty public constructor
@@ -59,6 +70,69 @@ public class add_recipe extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_recipe, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_recipe, container, false);
+
+        etName = (EditText)view.findViewById(R.id.etName);
+        etIngredients = (EditText)view.findViewById(R.id.etRecipeIngredients);
+        etRecipePreparation = (EditText)view.findViewById(R.id.etRecipePreparation);
+        etRecipeTime = (EditText)view.findViewById(R.id.etRecipeTime);
+
+        cbCeliac = (CheckBox)view.findViewById(R.id.cbRecipeCeliac);
+        cbVegan = (CheckBox)view.findViewById(R.id.cbRecipeVegan);
+        cbVegetarian = (CheckBox)view.findViewById(R.id.cbRecipeVegetarian);
+        cbDiabetic = (CheckBox)view.findViewById(R.id.cbRecipeDiabetic);
+
+        btAddRecipe =(Button)view.findViewById(R.id.btnAdd_Recipe);
+
+
+        btAddRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name,ingredients,preparation,time;
+                Integer recipetime;
+
+                // Mostrar Coso
+
+            }
+        });
+
+        return view;
+    }
+
+    public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+
+        // Check which checkbox was clicked
+        switch(view.getId()) {
+            case R.id.cbRecipeVegan:
+                if (checked){
+                    sVegan = 1;
+                }
+                else {
+                    sVegan = 0;
+                }
+            case R.id.cbRecipeCeliac:
+                if (checked){
+                    sCeliac = 1;
+                }
+                else {
+                    sCeliac = 0;
+                }
+            case R.id.cbRecipeDiabetic:
+                if (checked){
+                    sDiabetic = 1;
+                }
+                else {
+                    sDiabetic = 0;
+                }
+            case R.id.cbRecipeVegetarian:
+                if (checked){
+                    sVegetarian = 1;
+                }
+                else {
+                    sVegetarian = 0;
+                }
+        }
     }
 }

@@ -50,7 +50,7 @@ public class create_user extends Fragment {
 
     private void jsonregisterUser(String name,String email,String pass,String birthdate,String gendervalue){
         RequestQueue postRequest = Volley.newRequestQueue(getContext());
-        String url= "http://cocinapp.infinityfreeapp.com/registro_api.php";
+        String url= "http://gestion.universof.com/back_cocinapp/registro_api.php";
         //String url= "http://10.0.2.2/test/registro_api.php";
 
         final JSONObject jsonBody = new JSONObject();
@@ -175,10 +175,8 @@ public class create_user extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         gendervalue= parent.getItemAtPosition(position).toString();
-                        if (gendervalue != "Seleccione.."){
-                            gener =  determinateGender(gendervalue);
-                            Log.d("DEBUG",gener);
-                        }
+                        gener =  determinateGender(gendervalue);
+                        Log.d("DEBUG",gener);
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {

@@ -24,4 +24,13 @@
     <string name="birthDate">Fecha de nacimiento</string>
     <string name="mail">Correo eléctronico</string>
     <string name="admin_mnu">Menu de Admin</string>
+    <string name="add_recipe">Agregar una Receta</string>
+    <string name="preparation">Preparacion</string>
+    <string name="time">Tiempo (En minutos)</string>
+    <string name="ingredients">Ingredientes</string>
+    <string name="celiac">Celiaco</string>
+    <string name="diabetic">Diabetico</string>
+    <string name="vegan">Vegano</string>
+    <string name="vegetarian">Vegetariano</string>
+    <string name="add">Agregar</string>
 </resources>

@@ -6,9 +6,93 @@
     tools:context=".add_recipe">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="25dp"
+            android:layout_height="55dp"
+            android:autoSizeTextType="uniform"
+            android:text="@string/add_recipe"
+            android:textAlignment="center"
+            android:layout_marginBottom="35dp"
+            />
+
+        <EditText
+            android:id="@+id/etRecipeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:hint="@string/name"
+            android:inputType="text"
+            android:layout_marginBottom="5dp"/>
+
+        <EditText
+            android:id="@+id/etRecipePreparation"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:visibility="visible"
+            android:hint="@string/preparation"
+            android:layout_marginBottom="5dp"/>
+
+        <EditText
+            android:id="@+id/etRecipeTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:hint="@string/time"
+            android:inputType="number"
+            android:layout_marginBottom="5dp"/>
+
+        <EditText
+            android:id="@+id/etRecipeIngredients"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:visibility="visible"
+            android:hint="@string/ingredients"
+            android:layout_marginBottom="5dp"/>
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/celiac"
+            android:id="@+id/cbRecipeCeliac"
+            android:onClick="onCheckboxClicked"
+            />
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/diabetic"
+            android:id="@+id/cbRecipeDiabetic"
+            android:onClick="onCheckboxClicked"
+        />
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/vegan"
+            android:id="@+id/cbRecipeVegan"
+            android:onClick="onCheckboxClicked"
+            />
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/vegetarian"
+            android:id="@+id/cbRecipeVegetarian"
+            android:onClick="onCheckboxClicked"
+            />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="25dp"
+            android:text="@string/add"
+            android:layout_marginBottom="25dp"
+            android:id="@+id/btnAdd_Recipe"/>
+    </LinearLayout>
 
 </FrameLayout>
