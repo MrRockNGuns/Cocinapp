@@ -24,7 +24,7 @@ public class user_dashboard extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    Button btnUpreceta,btnEditData,btnLogOut;
+    Button btnUpreceta,btnEditData,btnLogOut,btnDshAdmin;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -70,6 +70,7 @@ public class user_dashboard extends Fragment {
         btnUpreceta = view.findViewById(R.id.btnUpreceta);
         btnEditData = view.findViewById(R.id.btnEditData);
         btnLogOut   = view.findViewById(R.id.btnLogOut);
+        btnDshAdmin = view.findViewById(R.id.btnAdminOpc);
 
         btnLogOut.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -89,6 +90,15 @@ public class user_dashboard extends Fragment {
                         .replace(R.id.Principal,new add_recipe()).addToBackStack(null).commit();
             }
         });
+
+        btnDshAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.Principal,new admin_dash()).addToBackStack(null).commit();
+            }
+        });
+
         return view;
     }
 }
